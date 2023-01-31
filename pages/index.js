@@ -121,3 +121,13 @@ export default function Home() {
     </>
   )
 }
+
+export function getStaticProps() {
+  return {
+    props: {
+      data: {
+        recipes: [{ title: "Vegan Curry"}]
+      }
+    }
+  }
+}
