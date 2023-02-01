@@ -26,13 +26,13 @@ export default function Home({ recipes }) {
       <main className={styles.main}>
         <div className={styles.description}>
           <h1>Welcome to the burner cookbook</h1>
-          <ul>
+          <ul className="recipes-list">
             {recipes?.length > 0 && recipes.map((recipe) =>
             (
-            <li key={recipe._id}>
+            <li key={recipe._id} className="recipe-card">
               <Link href="/about">
                 <Image src={urlFor(recipe.mainImage).url()} alt="" width={250} height={250} />
-                <span></span>
+                <span>{recipe.name}</span>
               </Link>
             </li>
             ))}
