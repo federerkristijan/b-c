@@ -14,7 +14,7 @@ body {
   font-size: 25px;
 }
 
-.header a {
+.header-link {
   color: rgb(75, 95, 75);
   display: inline-block;
   padding-top: 10px;
@@ -32,7 +32,7 @@ h1 {
   margin-bottom: 40px;
 }
 
-img {
+Image {
   max-width: 100%;
 }
 
@@ -44,7 +44,7 @@ img {
   padding: 0;
 }
 
-.recipe-card a {
+.recipe-link {
   display: block;
   height: 100%;
   text-decoration: none;
@@ -52,7 +52,7 @@ img {
   font-size: 22px;
 }
 
-.recipe-card img {
+.recipe-image {
   display: block;
   height: 300px;
   object-fit: cover;

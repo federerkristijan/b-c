@@ -23,22 +23,19 @@ export default function Home({ recipes }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
+
           <h1>Welcome to the burner cookbook</h1>
           <ul className="recipes-list">
             {recipes?.length > 0 && recipes.map((recipe) =>
             (
             <li key={recipe._id} className="recipe-card">
-              <Link href="/about">
-                <Image src={urlFor(recipe.mainImage).url()} alt="" width={250} height={250} />
+              <Link href="/about" className="recipe-link">
+                <Image src={urlFor(recipe.mainImage).url()} alt="" width={250} height={250} className="recipe-image"/>
                 <span>{recipe.name}</span>
               </Link>
             </li>
             ))}
           </ul>
-        </div>
-      </main>
     </>
   );
 }

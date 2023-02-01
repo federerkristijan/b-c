@@ -5,7 +5,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <nav className="header">
-        <Link href="/">
+        <Link href="/" className="header-link">
           Burner Cookbook
         </Link>
       </nav>
