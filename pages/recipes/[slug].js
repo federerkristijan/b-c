@@ -1,3 +1,4 @@
+import useState from "react";
 import Image from "next/image";
 import { sanityClient, urlFor, PortableText } from "../../lib/sanity";
 
@@ -20,6 +21,20 @@ const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
 }`;
 
 export default function OneRecipe({ data }) {
+  const [likes, setLikes] = useState(data?.recipe?.likes);
+
+  async function addLike() {
+    const res = await ("/api/handle-like",
+    {
+      method: "POST",
+      body: JSON.stringify({ _id: recipe._id }),
+    }).catch((error) => console.log(error));
+
+    const data = await res.json();
+
+    setLikes(data.likes);
+  }
+
   const { recipe } = data;
 
   return (
