@@ -24,19 +24,29 @@ export default function OneRecipe({ data }) {
   return (
     <article>
       <h1>{recipe.name}</h1>
-      <main>
-        <Image />
-        <div>
-          <ul>
-            <li>
-
-            </li>
+      <main className="content">
+        <Image
+          src={urlFor(recipe?.mainImage).url()}
+          alt={recipe.name}
+          width={280}
+          height={280}
+        />
+        <div className="breakdown">
+          <ul className="ingredients">
+            {recipe.ingredient?.map((ingredient) => (
+              <li key={ingredient.key} className="ingredient">
+                {ingredient?.wholeNumber}
+                {ingredient?.fraction} {ingredient?.unit}
+                <br />
+                {ingredient?.ingredient?.name}
+              </li>
+            ))}
           </ul>
           <h3>Instructions</h3>
         </div>
       </main>
     </article>
-  )
+  );
 }
 
 export async function getStaticPaths() {
