@@ -1,16 +1,13 @@
+import Image from "next/image";
 import { sanityClient, urlFor, PortableText } from "../../lib/sanity";
 
 const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
   _id,
   name,
   slug,
-  mainImage{
-    asset->{
-      _id,
-      url
-    }
-  },
+  mainImage,
   ingredient[]{
+    _key,
     unit,
     wholeNumber,
     fraction,
@@ -21,7 +18,26 @@ const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
   instructions
 }`;
 
-export default function OneRecipe() {}
+export default function OneRecipe({ data }) {
+  const { recipe } = data;
+
+  return (
+    <article>
+      <h1>{recipe.name}</h1>
+      <main>
+        <Image />
+        <div>
+          <ul>
+            <li>
+
+            </li>
+          </ul>
+          <h3>Instructions</h3>
+        </div>
+      </main>
+    </article>
+  )
+}
 
 export async function getStaticPaths() {
   const pats = await sanityClient.fetch(
