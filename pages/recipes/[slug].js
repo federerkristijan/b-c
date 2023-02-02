@@ -34,7 +34,7 @@ export default function OneRecipe({ data }) {
         <div className="breakdown">
           <ul className="ingredients">
             {recipe.ingredient?.map((ingredient) => (
-              <li key={ingredient.key} className="ingredient">
+              <li key={ingredient._key} className="ingredient">
                 {ingredient?.wholeNumber}
                 {ingredient?.fraction} {ingredient?.unit}
                 <br />
