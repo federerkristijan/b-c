@@ -50,7 +50,7 @@ export default function OneRecipe({ data }) {
 }
 
 export async function getStaticPaths() {
-  const pats = await sanityClient.fetch(
+  const paths = await sanityClient.fetch(
     `*[_typ == "recipe" && defined(slug.current)]{
       "params": {
         "slug": slug.current
