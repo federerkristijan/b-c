@@ -40,6 +40,11 @@ export default function OneRecipe({ data }) {
   return (
     <article>
       <h1>{recipe.name}</h1>
+
+      <button className="like-button" onClick={addLike}>
+        {likes} ❤️
+      </button>
+
       <main className="content">
         <Image
           src={urlFor(recipe?.mainImage).url()}
