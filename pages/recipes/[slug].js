@@ -1,3 +1,4 @@
+import useState from "react";
 import Image from "next/image";
 import { sanityClient, urlFor, PortableText } from "../../lib/sanity";
 
@@ -19,12 +20,37 @@ const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
   likes
 }`;
 
-export default function OneRecipe({ data }) {
+export default function OneRecipe({ data, preview }) {
+  const { data: recipe } = usePreviewSubscription(recipeQuery, {
+    params: { slug: data.recipe?.slug.current },
+    initialData: data,
+    enabled: preview
+  })
+
+  const [likes, setLikes] = useState(data?.recipe?.likes);
+
+  async function addLike() {
+    const res = await ("/api/handle-like",
+    {
+      method: "POST",
+      body: JSON.stringify({ _id: recipe._id }),
+    }).catch((error) => console.log(error));
+
+    const data = await res.json();
+
+    setLikes(data.likes);
+  }
+
   const { recipe } = data;
 
   return (
     <article>
       <h1>{recipe.name}</h1>
+
+      <button className="like-button" onClick={addLike}>
+        {likes} ❤️
+      </button>
+
       <main className="content">
         <Image
           src={urlFor(recipe?.mainImage).url()}
@@ -75,6 +101,7 @@ export async function getStaticProps({ params }) {
       data: {
         recipe,
       },
+      preview: true
     },
   };
 }
