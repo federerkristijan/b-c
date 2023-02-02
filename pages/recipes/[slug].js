@@ -15,7 +15,8 @@ const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
       name
     }
   },
-  instructions
+  instructions,
+  likes
 }`;
 
 export default function OneRecipe({ data }) {
