@@ -42,7 +42,7 @@ export default function OneRecipe({ data }) {
               </li>
             ))}
           </ul>
-          <h3>Instructions</h3>
+          <PortableText value={recipe?.instructions} />
         </div>
       </main>
     </article>
